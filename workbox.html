@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>WorkBox AI – Your Own Private AI Workstation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="WorkBox AI is your own private AI workstation for building, writing, automating, and creating — a local, visible, powerful AI computer that works for developers, creators, researchers, analysts, and teams."
+  />
+
+  <style>
+    /* ------------------------------
+       RED / GRAPHITE THEME
+       ------------------------------ */
+
+    :root {
+      --accent: #ff5151; 
+      --accent-soft: rgba(255, 81, 81, 0.14);
+      --danger: #ff4b4b;
+      --bg: #0d0f13;
+      --card: #13151b;
+      --border: #1e2630;
+      --muted: #8e96a3;
+      --text: #e3e6ea;
+      --radius-lg: 18px;
+      --radius-xl: 26px;
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background-color: var(--bg);
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 28px 28px;
+      background-attachment: fixed;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page { max-width: 1120px; margin: 0 auto; padding: 24px 20px 72px; }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-bottom: 32px;
+    }
+
+    .logo-wrap { display: flex; align-items: center; gap: 10px; }
+
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #15181d;
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--accent);
+      box-shadow: 0 0 18px rgba(255,81,81,0.4);
+    }
+
+    .logo-text-main { font-size: 20px; font-weight: 600; }
+    .logo-text-sub {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+      color: var(--muted);
+      flex-wrap: wrap;
+    }
+
+    nav a:hover { color: var(--accent); }
+
+    /* ---------- HERO ---------- */
+
+    .layout-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 32px;
+      align-items: center;
+      margin-bottom: 64px;
+    }
+
+    @media (max-width: 880px) {
+      .layout-hero {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-title {
+      font-size: clamp(32px, 4vw, 38px);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin: 10px 0 14px;
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 22px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 22px;
+      font-size: 11px;
+    }
+
+    .tag-chip {
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted);
+      background: rgba(17,20,24,0.65);
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    .btn-primary {
+      padding: 9px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      background: radial-gradient(circle at top left, var(--accent), #1a1a1a);
+      color: #0b0b0b;
+      box-shadow: var(--shadow-soft);
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover { filter: brightness(1.1); }
+
+    .hero-visual {
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      background: #0c0f14;
+      box-shadow: var(--shadow-soft);
+      padding: 16px;
+      min-height: 260px;
+    }
+
+    .monitor-screen {
+      border-radius: 10px;
+      border: 1px solid #1a1d21;
+      background: #080a0d;
+      min-height: 240px;
+      padding: 14px;
+      font-family: ui-monospace, monospace;
+      font-size: 12px;
+      color: var(--text);
+    }
+
+    .pill-row {
+      display: inline-flex;
+      gap: 6px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(30,34,41,0.8);
+      border: 1px solid rgba(255,255,255,0.1);
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    /* ---------- GENERAL LAYOUT ---------- */
+
+    section { margin-bottom: 64px; }
+
+    .section-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .section-title { font-size: 22px; margin-bottom: 8px; }
+
+    .section-intro {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 620px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 880px) {
+      .grid-3 { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px 18px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.4);
+    }
+
+    .card-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .card-title {
+      font-size: 15px;
+      margin-bottom: 6px;
+      color: var(--accent);
+    }
+
+    .card-body { font-size: 13px; color: var(--muted); }
+
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <header>
+      <div class="logo-wrap">
+        <div class="logo-mark">W</div>
+        <div>
+          <div class="logo-text-main">WorkBox AI</div>
+          <div class="logo-text-sub">Private AI Workstation</div>
+        </div>
+      </div>
+
+      <nav>
+        <a href="index.html">← GlassBox Demo</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="layout-hero">
+      <div>
+        <h1 class="hero-title">
+          Your own private AI workstation for building, writing, automating, creating and business work.
+        </h1>
+
+        <p class="hero-sub">
+          WorkBox AI is a local AI computer — an entire AI-powered development, research, writing, and creativity environment that runs on hardware you own.  
+          No cloud. No limits. No sharing. Just a powerful AI desktop you can see, stream, and control.
+        </p>
+
+        <div class="hero-tags">
+          <span class="tag-chip">Software engineering</span>
+          <span class="tag-chip">Automation</span>
+          <span class="tag-chip">Data & analysis</span>
+          <span class="tag-chip">Writing & docs</span>
+          <span class="tag-chip">Research</span>
+          <span class="tag-chip">Creativity</span>
+        </div>
+
+        <div class="cta-row">
+          <button class="btn-primary">Watch a demo</button>
+          <button class="btn-primary">See what it can do</button>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="monitor-screen">
+          <div>// workbox terminal</div>
+          <div>> generating full-stack scaffold...</div>
+          <div>> built: api/, web/, db/, tests/</div>
+          <div>> starting local dev server...</div>
+          <div>> running health checks...</div>
+          <div class="pill-row">
+            <span>✓ visible desktop</span>
+            <span>✓ local execution</span>
+            <span>✓ unlimited</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOFTWARE ENGINEERING -->
+    <section id="coding">
+      <div class="section-label">Flagship capability</div>
+      <h2 class="section-title">Your own AI software engineer</h2>
+      <p class="section-intro">
+        WorkBox AI writes code, builds apps, runs servers, debugs issues, generates documentation, and produces deployment-ready bundles — all locally.
+      </p>
+
+      <div class="grid-3">
+
+        <div class="card">
+          <div class="card-tag">Full-stack</div>
+          <div class="card-title">Build complete applications</div>
+          <div class="card-body">
+            WorkBox generates entire multi-folder projects: APIs, front-ends, CLIs, data tools, backend systems, scripts, tests, docs, Docker, and deployment configs.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-tag">Local execution</div>
+          <div class="card-title">Run & debug code directly</div>
+          <div class="card-body">
+            The workstation can run your applications, test them, inspect logs, and fix errors — just like a human developer working on their own machine.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-tag">Deploy-ready</div>
+          <div class="card-title">Prepare builds & containers</div>
+          <div class="card-body">
+            Generate Dockerfiles, build production bundles, write CI/CD workflows, and prepare deployment artifacts. Ready for your server or infra.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EVERYTHING ELSE -->
+    <section id="everything">
+      <div class="section-label">Beyond coding</div>
+      <h2 class="section-title">A workstation for everything else you do</h2>
+      <p class="section-intro">
+        Because it lives on your hardware, WorkBox AI can help with your entire workflow — not just code.
+      </p>
+
+      <div class="grid-3">
+
+        <div class="card">
+          <div class="card-tag">Writing & docs</div>
+          <div class="card-title">Generate polished content</div>
+          <div class="card-body">
+            Reports, documentation, drafts, summaries, proposals, presentations, emails — all created locally and stored privately.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-tag">Data & analysis</div>
+          <div class="card-title">Work with your data directly</div>
+          <div class="card-body">
+            Analyse spreadsheets, build scripts, clean data, run statistical models, or prepare insights — without ever uploading data to the cloud.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-tag">Automation</div>
+          <div class="card-title">Build your own automations</div>
+          <div class="card-body">
+            Batch tools, scripts, workflows, cron jobs, pipelines — WorkBox can generate and run them directly on its own machine.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="grid-3">
+
+        <div class="card">
+          <div class="card-tag">Research</div>
+          <div class="card-title">Investigate, compare, summarise</div>
+          <div class="card-body">
+            Break down papers, search your files, prepare literature reviews, build structured reasoning trees, or explore complex topics locally.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-tag">Creativity</div>
+          <div class="card-title">Design & creative tasks</div>
+          <div class="card-body">
+            Draft UI designs, write story outlines, structure creative projects, or generate asset ideas — with no creative limits.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-tag">Productivity</div>
+          <div class="card-title">A true everyday assistant</div>
+          <div class="card-body">
+            Plan, organise, schedule, draft notes, prepare checklists, document processes — a private AI assistant that works like a real desktop companion.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- WHY LOCAL -->
+    <section id="why">
+      <div class="section-label">Why private & local</div>
+      <h2 class="section-title">You own everything — the AI, the projects, the data</h2>
+      <p class="section-intro">
+        Cloud AI is convenient — but limited, restricted, metered, and shared.  
+        WorkBox AI gives you true ownership and full creative freedom.
+      </p>
+
+      <div class="grid-3">
+
+        <div class="card">
+          <div class="card-tag">Ownership</div>
+          <div class="card-title">Your machine, your work</div>
+          <div class="card-body">
+            All code, models, logs, documents, and artifacts stay on your hardware. Nothing is shared or uploaded.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-tag">No limits</div>
+          <div class="card-title">No rate caps or tokens</div>
+          <div class="card-body">
+            Run huge projects, long creations, giant codebases, and extended tasks — WorkBox never throttles you or cuts you off.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-tag">Visibility</div>
+          <div class="card-title">Streamed desktop you can see</div>
+          <div class="card-body">
+            You see everything the AI does — the editor, terminal, windows, logs. A real desktop, not a hidden cloud agent.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-label">Contact</div>
+      <h2 class="section-title">Interested in a WorkBox?</h2>
+      <p class="section-intro">
+        Send an email with a line about your workflow or use-case, and we’ll discuss what a WorkBox setup could look like for you — developer, creator, team, researcher, analyst, or anything else.
+      </p>
+
+      <form
+        class="email-row"
+        action="mailto:your-email@example.com"
+        method="post"
+        enctype="text/plain"
+      >
+        <input
+          class="email-input"
+          type="email"
+          name="email"
+          placeholder="you@example.com"
+          required
+        />
+        <button class="btn-primary" type="submit">
+          Start the conversation
+        </button>
+      </form>
+    </section>
+
+  </div>
+</body>
+</html>
