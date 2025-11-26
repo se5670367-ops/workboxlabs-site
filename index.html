@@ -2,481 +2,637 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>WorkBox AI – Your Own Private AI Workstation</title>
+  <title>WorkBox Labs — Local AI Workers & Optical Containment</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta
     name="description"
-    content="WorkBox AI is your own private AI workstation for building, writing, automating, and creating — a local, visible, powerful AI computer that works for developers, creators, researchers, analysts, and teams."
+    content="WorkBox Labs builds local AI workers and optically-contained AI systems, including WorkBox AI and GlassBox AI, to keep powerful AI close to your data and under human control."
   />
 
   <style>
-    /* ------------------------------
-       RED / GRAPHITE THEME
-       ------------------------------ */
-
     :root {
-      --accent: #ff5151; 
-      --accent-soft: rgba(255, 81, 81, 0.14);
-      --danger: #ff4b4b;
-      --bg: #0d0f13;
-      --card: #13151b;
-      --border: #1e2630;
-      --muted: #8e96a3;
-      --text: #e3e6ea;
+      --bg: #050811;
+      --bg-soft: #0b101b;
+      --card: #0f1729;
+      --border: #1f2937;
+      --accent: #22c55e;
+      --accent-soft: rgba(34, 197, 94, 0.15);
+      --accent-alt: #38bdf8;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
       --radius-lg: 18px;
       --radius-xl: 26px;
-      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.4);
+      --shadow-soft: 0 24px 50px rgba(0,0,0,0.55);
     }
+
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: system-ui, sans-serif;
-      background-color: var(--bg);
-      background-image:
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: 28px 28px;
-      background-attachment: fixed;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,0.18), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(34,197,94,0.18), transparent 55%),
+        var(--bg);
       color: var(--text);
       line-height: 1.6;
     }
 
     a { color: inherit; text-decoration: none; }
 
-    .page { max-width: 1120px; margin: 0 auto; padding: 24px 20px 72px; }
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px 20px 72px;
+    }
+
+    /* HEADER */
 
     header {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 16px;
       flex-wrap: wrap;
-      gap: 18px;
       margin-bottom: 32px;
     }
 
-    .logo-wrap { display: flex; align-items: center; gap: 10px; }
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
     .logo-mark {
       width: 40px;
       height: 40px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.08);
+      background: radial-gradient(circle at top left, var(--accent), #020617);
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #15181d;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 18px;
-      color: var(--accent);
-      box-shadow: 0 0 18px rgba(255,81,81,0.4);
+      color: #020617;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 0 18px rgba(34,197,94,0.7);
     }
 
-    .logo-text-main { font-size: 20px; font-weight: 600; }
-    .logo-text-sub {
+    .logo-main {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .logo-sub {
       font-size: 11px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
       color: var(--muted);
     }
 
     nav {
       display: flex;
-      gap: 18px;
+      align-items: center;
+      gap: 16px;
       font-size: 14px;
       color: var(--muted);
       flex-wrap: wrap;
     }
 
+    nav a { padding: 6px 0; }
     nav a:hover { color: var(--accent); }
 
-    /* ---------- HERO ---------- */
+    .nav-pill {
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.7);
+      background: rgba(15,23,42,0.7);
+    }
+    .nav-pill:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
 
-    .layout-hero {
+    /* HERO */
+
+    .hero-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: 32px;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 30px;
       align-items: center;
-      margin-bottom: 64px;
+      margin-bottom: 60px;
     }
 
     @media (max-width: 880px) {
-      .layout-hero {
+      .hero-grid {
         grid-template-columns: 1fr;
       }
     }
 
+    .hero-label {
+      font-size: 11px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
     .hero-title {
-      font-size: clamp(32px, 4vw, 38px);
+      font-size: clamp(32px, 4vw, 40px);
       line-height: 1.1;
       letter-spacing: -0.03em;
-      margin: 10px 0 14px;
+      margin: 0 0 14px;
+    }
+
+    .hero-title span {
+      color: var(--accent-alt);
     }
 
     .hero-sub {
       font-size: 15px;
       color: var(--muted);
-      max-width: 520px;
-      margin-bottom: 22px;
+      max-width: 560px;
+      margin-bottom: 18px;
     }
 
-    .hero-tags {
+    .hero-pills {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 22px;
-      font-size: 11px;
+      margin-bottom: 20px;
+      font-size: 12px;
     }
 
-    .tag-chip {
-      padding: 4px 9px;
+    .hero-pill {
+      padding: 4px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid rgba(148,163,184,0.7);
+      background: rgba(15,23,42,0.8);
       color: var(--muted);
-      background: rgba(17,20,24,0.65);
     }
 
-    .cta-row {
+    .btn-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-      margin-top: 12px;
+      gap: 10px;
     }
 
     .btn-primary {
-      padding: 9px 18px;
+      padding: 10px 20px;
       border-radius: 999px;
-      cursor: pointer;
+      border: none;
       font-size: 14px;
       font-weight: 500;
-      background: radial-gradient(circle at top left, var(--accent), #1a1a1a);
-      color: #0b0b0b;
+      cursor: pointer;
+      background: radial-gradient(circle at top left, var(--accent), #022c22);
+      color: #020617;
       box-shadow: var(--shadow-soft);
-      border: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+    }
+    .btn-primary:hover { filter: brightness(1.08); }
+
+    .btn-ghost {
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.8);
+      background: transparent;
+      color: var(--muted);
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
     }
 
-    .btn-primary:hover { filter: brightness(1.1); }
-
-    .hero-visual {
+    .hero-panel {
       border-radius: var(--radius-xl);
       border: 1px solid var(--border);
-      background: #0c0f14;
+      background: radial-gradient(circle at top, rgba(56,189,248,0.14), transparent 60%) #020617;
+      padding: 18px;
       box-shadow: var(--shadow-soft);
-      padding: 16px;
-      min-height: 260px;
     }
 
-    .monitor-screen {
+    .hero-panel-inner {
+      border-radius: 16px;
+      border: 1px solid rgba(148,163,184,0.4);
+      background: linear-gradient(145deg, #020617, #020617, #0b1220);
+      padding: 14px 16px 12px;
+      font-size: 13px;
+    }
+
+    .hero-panel-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .hero-panel-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .hero-panel-grid { grid-template-columns: 1fr; }
+    }
+
+    .mini-card {
+      background: rgba(15,23,42,0.9);
       border-radius: 10px;
-      border: 1px solid #1a1d21;
-      background: #080a0d;
-      min-height: 240px;
-      padding: 14px;
-      font-family: ui-monospace, monospace;
+      padding: 8px 10px;
+      border: 1px solid rgba(148,163,184,0.35);
       font-size: 12px;
+      color: var(--muted);
+    }
+
+    .mini-card h4 {
+      margin: 0 0 4px;
+      font-size: 13px;
       color: var(--text);
     }
 
-    .pill-row {
-      display: inline-flex;
+    .chip-row {
+      margin-top: 6px;
+      display: flex;
+      flex-wrap: wrap;
       gap: 6px;
-      padding: 5px 9px;
-      border-radius: 999px;
-      background: rgba(30,34,41,0.8);
-      border: 1px solid rgba(255,255,255,0.1);
-      font-size: 10px;
-      color: var(--muted);
-      margin-top: 10px;
     }
 
-    /* ---------- GENERAL LAYOUT ---------- */
+    .chip {
+      font-size: 11px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      background: rgba(15,23,42,0.9);
+      color: var(--muted);
+    }
 
-    section { margin-bottom: 64px; }
+    .chip-accent {
+      border-color: rgba(34,197,94,0.8);
+      background: var(--accent-soft);
+      color: #bbf7d0;
+    }
+
+    /* SECTION SHARED */
+
+    section {
+      margin-bottom: 60px;
+    }
 
     .section-label {
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.24em;
       color: var(--muted);
-      margin-bottom: 10px;
+      margin-bottom: 6px;
     }
 
-    .section-title { font-size: 22px; margin-bottom: 8px; }
+    .section-title {
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
 
     .section-intro {
       font-size: 14px;
       color: var(--muted);
-      max-width: 620px;
+      max-width: 650px;
+      margin-bottom: 18px;
     }
 
-    .grid-3 {
+    /* PROJECT GRID */
+
+    .project-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px;
-      margin-top: 24px;
     }
 
-    @media (max-width: 880px) {
-      .grid-3 { grid-template-columns: 1fr; }
+    @media (max-width: 840px) {
+      .project-grid { grid-template-columns: 1fr; }
     }
 
     .card {
       background: var(--card);
-      border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 20px 18px;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.4);
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.55);
+      padding: 18px 16px 16px;
+    }
+
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
     }
 
     .card-tag {
       font-size: 11px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.8);
       color: var(--muted);
-      margin-bottom: 6px;
+      background: rgba(15,23,42,0.9);
     }
 
-    .card-title {
-      font-size: 15px;
-      margin-bottom: 6px;
+    .card p {
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0 0 10px;
+    }
+
+    .card-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+      font-size: 13px;
+    }
+
+    .badge-link {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.7);
+      color: var(--muted);
+    }
+
+    .badge-link:hover {
+      border-color: var(--accent);
       color: var(--accent);
     }
 
-    .card-body { font-size: 13px; color: var(--muted); }
+    /* WHY GRID */
 
+    .why-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
+      gap: 18px;
+    }
+
+    @media (max-width: 840px) {
+      .why-grid { grid-template-columns: 1fr; }
+    }
+
+    .bullet-list {
+      font-size: 14px;
+      color: var(--muted);
+      padding-left: 18px;
+      margin: 0;
+    }
+
+    .status-card {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .status-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+      font-size: 12px;
+    }
+
+    .status-pill {
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.7);
+      background: rgba(15,23,42,0.9);
+      color: var(--muted);
+    }
+
+    .status-pill.live {
+      border-color: rgba(34,197,94,0.9);
+      color: #bbf7d0;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid #111827;
+      padding-top: 18px;
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
+    }
   </style>
 </head>
-
 <body>
   <div class="page">
-
+    <!-- HEADER -->
     <header>
       <div class="logo-wrap">
-        <div class="logo-mark">W</div>
+        <div class="logo-mark">WL</div>
         <div>
-          <div class="logo-text-main">WorkBox AI</div>
-          <div class="logo-text-sub">Private AI Workstation</div>
+          <div class="logo-main">WorkBox Labs</div>
+          <div class="logo-sub">Local AI · Optical Containment</div>
         </div>
       </div>
 
       <nav>
-        <a href="index.html">← GlassBox Demo</a>
+        <a href="#projects">Projects</a>
+        <a href="#why">Why this approach</a>
+        <a href="#status">Status</a>
+        <a href="workbox.html" class="nav-pill">WorkBox AI</a>
       </nav>
     </header>
 
     <!-- HERO -->
-    <section class="layout-hero">
+    <section class="hero-grid">
       <div>
+        <div class="hero-label">Independent AI R&D</div>
         <h1 class="hero-title">
-          Your own private AI workstation for building, writing, automating, creating and business work.
+          Building <span>local AI workers</span> and AI you can see, pause and govern.
         </h1>
-
         <p class="hero-sub">
-          WorkBox AI is a local AI computer — an entire AI-powered development, research, writing, and creativity environment that runs on hardware you own.  
-          No cloud. No limits. No sharing. Just a powerful AI desktop you can see, stream, and control.
+          WorkBox Labs explores how far local AI can go when it has the freedom to think —
+          but operates on hardware you own, and actions you can approve or reject in plain language.
         </p>
 
-        <div class="hero-tags">
-          <span class="tag-chip">Software engineering</span>
-          <span class="tag-chip">Automation</span>
-          <span class="tag-chip">Data & analysis</span>
-          <span class="tag-chip">Writing & docs</span>
-          <span class="tag-chip">Research</span>
-          <span class="tag-chip">Creativity</span>
+        <div class="hero-pills">
+          <div class="hero-pill">Local-only workloads</div>
+          <div class="hero-pill">No hidden network channels</div>
+          <div class="hero-pill">Human-approved actions</div>
+          <div class="hero-pill">Optical one-way output (GlassBox)</div>
         </div>
 
-        <div class="cta-row">
-          <button class="btn-primary">Watch a demo</button>
-          <button class="btn-primary">See what it can do</button>
+        <div class="btn-row">
+          <a href="workbox.html">
+            <button class="btn-primary">Meet WorkBox AI</button>
+          </a>
+          <a href="https://glassbox-ai.onrender.com" target="_blank" rel="noreferrer">
+            <button class="btn-ghost">Watch GlassBox demo</button>
+          </a>
         </div>
       </div>
 
-      <div class="hero-visual">
-        <div class="monitor-screen">
-          <div>// workbox terminal</div>
-          <div>> generating full-stack scaffold...</div>
-          <div>> built: api/, web/, db/, tests/</div>
-          <div>> starting local dev server...</div>
-          <div>> running health checks...</div>
-          <div class="pill-row">
-            <span>✓ visible desktop</span>
-            <span>✓ local execution</span>
-            <span>✓ unlimited</span>
+      <aside class="hero-panel" aria-hidden="true">
+        <div class="hero-panel-inner">
+          <div class="hero-panel-title">What lives inside WorkBox Labs</div>
+          <div style="font-size:13px; color:var(--muted);">
+            Two hands-on experiments evolve in parallel: a practical AI worker you can put to work on your
+            own machine, and a research-grade Isolator that proves AI can be powerful, yet fully contained.
+          </div>
+
+          <div class="hero-panel-grid">
+            <div class="mini-card">
+              <h4>WorkBox AI</h4>
+              <div>
+                Local AI worker focused on real tasks: coding, documentation, structured analysis and small
+                automations — all running on a workstation you control.
+              </div>
+              <div class="chip-row">
+                <div class="chip chip-accent">AI Worker</div>
+                <div class="chip">Desktop streaming</div>
+                <div class="chip">Task queues</div>
+              </div>
+            </div>
+
+            <div class="mini-card">
+              <h4>GlassBox AI / IDAS</h4>
+              <div>
+                An optically-contained AI rig based on the IDAS architecture. No inbound control path;
+                the only way out is through visible-light QR codes carrying Human Accountability Tickets.
+              </div>
+              <div class="chip-row">
+                <div class="chip chip-accent">Optical one-way</div>
+                <div class="chip">HAT console</div>
+                <div class="chip">Full audit trail</div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </aside>
     </section>
 
-    <!-- SOFTWARE ENGINEERING -->
-    <section id="coding">
-      <div class="section-label">Flagship capability</div>
-      <h2 class="section-title">Your own AI software engineer</h2>
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-label">Projects</div>
+      <h2 class="section-title">What WorkBox Labs is building</h2>
       <p class="section-intro">
-        WorkBox AI writes code, builds apps, runs servers, debugs issues, generates documentation, and produces deployment-ready bundles — all locally.
+        The long-term goal is simple: show that serious, high-value work can be done by AI
+        that lives on your own machines, with transparent limits and visible, reversible actions.
       </p>
 
-      <div class="grid-3">
-
-        <div class="card">
-          <div class="card-tag">Full-stack</div>
-          <div class="card-title">Build complete applications</div>
-          <div class="card-body">
-            WorkBox generates entire multi-folder projects: APIs, front-ends, CLIs, data tools, backend systems, scripts, tests, docs, Docker, and deployment configs.
+      <div class="project-grid">
+        <article class="card">
+          <div class="card-head">
+            <div>
+              <div class="card-title">WorkBox AI</div>
+              <div style="font-size:13px; color:var(--muted);">
+                A local AI worker that behaves like a focused software engineer and operations assistant.
+              </div>
+            </div>
+            <div class="card-tag">Workstation</div>
           </div>
-        </div>
 
-        <div class="card">
-          <div class="card-tag">Local execution</div>
-          <div class="card-title">Run & debug code directly</div>
-          <div class="card-body">
-            The workstation can run your applications, test them, inspect logs, and fix errors — just like a human developer working on their own machine.
+          <p>
+            WorkBox AI is designed to sit on a desk, stream its desktop and take on real work:
+            writing and refactoring code, preparing documentation, helping with data work and
+            shaping small tools end-to-end.
+          </p>
+          <p>
+            Instead of a vague “chat”, you give it structured tasks. You still have the final say,
+            but the WorkBox does the heavy lifting on your own hardware.
+          </p>
+
+          <div class="card-links">
+            <a href="workbox.html" class="badge-link">Open WorkBox AI page →</a>
           </div>
-        </div>
+        </article>
 
-        <div class="card">
-          <div class="card-tag">Deploy-ready</div>
-          <div class="card-title">Prepare builds & containers</div>
-          <div class="card-body">
-            Generate Dockerfiles, build production bundles, write CI/CD workflows, and prepare deployment artifacts. Ready for your server or infra.
+        <article class="card">
+          <div class="card-head">
+            <div>
+              <div class="card-title">GlassBox AI / IDAS Isolator</div>
+              <div style="font-size:13px; color:var(--muted);">
+                A research prototype that keeps AI behind glass with a single, visible output channel.
+              </div>
+            </div>
+            <div class="card-tag">Research</div>
           </div>
-        </div>
 
+          <p>
+            GlassBox AI runs a powerful local model in an Isolator with no network, no keyboard and
+            no mouse. The model can “think” freely, but it can only propose actions by emitting a
+            Human Accountability Ticket (HAT) as a QR code.
+          </p>
+          <p>
+            A separate console decodes each HAT, shows the full plan, and requires human approval
+            before anything runs on a separate machine. Every step is logged.
+          </p>
+
+          <div class="card-links">
+            <a href="https://glassbox-ai.onrender.com" target="_blank" rel="noreferrer" class="badge-link">
+              View public GlassBox demo →
+            </a>
+          </div>
+        </article>
       </div>
     </section>
 
-    <!-- EVERYTHING ELSE -->
-    <section id="everything">
-      <div class="section-label">Beyond coding</div>
-      <h2 class="section-title">A workstation for everything else you do</h2>
-      <p class="section-intro">
-        Because it lives on your hardware, WorkBox AI can help with your entire workflow — not just code.
-      </p>
-
-      <div class="grid-3">
-
-        <div class="card">
-          <div class="card-tag">Writing & docs</div>
-          <div class="card-title">Generate polished content</div>
-          <div class="card-body">
-            Reports, documentation, drafts, summaries, proposals, presentations, emails — all created locally and stored privately.
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-tag">Data & analysis</div>
-          <div class="card-title">Work with your data directly</div>
-          <div class="card-body">
-            Analyse spreadsheets, build scripts, clean data, run statistical models, or prepare insights — without ever uploading data to the cloud.
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-tag">Automation</div>
-          <div class="card-title">Build your own automations</div>
-          <div class="card-body">
-            Batch tools, scripts, workflows, cron jobs, pipelines — WorkBox can generate and run them directly on its own machine.
-          </div>
-        </div>
-
-      </div>
-
-      <div class="grid-3">
-
-        <div class="card">
-          <div class="card-tag">Research</div>
-          <div class="card-title">Investigate, compare, summarise</div>
-          <div class="card-body">
-            Break down papers, search your files, prepare literature reviews, build structured reasoning trees, or explore complex topics locally.
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-tag">Creativity</div>
-          <div class="card-title">Design & creative tasks</div>
-          <div class="card-body">
-            Draft UI designs, write story outlines, structure creative projects, or generate asset ideas — with no creative limits.
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-tag">Productivity</div>
-          <div class="card-title">A true everyday assistant</div>
-          <div class="card-body">
-            Plan, organise, schedule, draft notes, prepare checklists, document processes — a private AI assistant that works like a real desktop companion.
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- WHY LOCAL -->
+    <!-- WHY THIS APPROACH -->
     <section id="why">
-      <div class="section-label">Why private & local</div>
-      <h2 class="section-title">You own everything — the AI, the projects, the data</h2>
+      <div class="section-label">Why this approach</div>
+      <h2 class="section-title">Freedom for the model. Boundaries for the system.</h2>
       <p class="section-intro">
-        Cloud AI is convenient — but limited, restricted, metered, and shared.  
-        WorkBox AI gives you true ownership and full creative freedom.
+        Today’s AI tends to live at two extremes: tightly sandboxed tools that can’t help much,
+        or highly-connected agents you can’t fully see. WorkBox Labs explores a middle path:
+        powerful local AI workers, wrapped in visible, human-first safety rails.
       </p>
 
-      <div class="grid-3">
-
+      <div class="why-grid">
         <div class="card">
-          <div class="card-tag">Ownership</div>
-          <div class="card-title">Your machine, your work</div>
-          <div class="card-body">
-            All code, models, logs, documents, and artifacts stay on your hardware. Nothing is shared or uploaded.
-          </div>
+          <ul class="bullet-list">
+            <li><strong>Local-first, not cloud-first.</strong> Your data, code and files stay on machines you control.</li>
+            <li><strong>Visible actions.</strong> GlassBox uses HATs so every action is described in plain JSON and UI before it happens.</li>
+            <li><strong>Human approval baked in.</strong> The console shows previews, tiers and audit trails so you decide what runs.</li>
+            <li><strong>No hidden backchannels.</strong> The Isolator exposes only a one-way optical output — there is no inbound control path.</li>
+            <li><strong>Designed for real work.</strong> WorkBox AI focuses on end-to-end tasks, not just conversation snippets.</li>
+          </ul>
         </div>
 
-        <div class="card">
-          <div class="card-tag">No limits</div>
-          <div class="card-title">No rate caps or tokens</div>
-          <div class="card-body">
-            Run huge projects, long creations, giant codebases, and extended tasks — WorkBox never throttles you or cuts you off.
+        <div class="card status-card" id="status">
+          <div class="card-title" style="margin-bottom:6px;">Where things are up to</div>
+          <p>
+            The current prototypes are already capable of generating HATs, displaying QR bursts,
+            decoding them on a main console and running approved actions with logging in place.
+          </p>
+          <p>
+            Next milestones include refining the WorkBox AI worker loop, polishing the GlassBox
+            demo site and shaping early, carefully-scoped pilot use cases.
+          </p>
+          <div class="status-pill-row">
+            <div class="status-pill live">GlassBox demo: live</div>
+            <div class="status-pill">WorkBox AI: prototype</div>
+            <div class="status-pill">Pilots: in planning</div>
           </div>
         </div>
-
-        <div class="card">
-          <div class="card-tag">Visibility</div>
-          <div class="card-title">Streamed desktop you can see</div>
-          <div class="card-body">
-            You see everything the AI does — the editor, terminal, windows, logs. A real desktop, not a hidden cloud agent.
-          </div>
-        </div>
-
       </div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="section-label">Contact</div>
-      <h2 class="section-title">Interested in a WorkBox?</h2>
-      <p class="section-intro">
-        Send an email with a line about your workflow or use-case, and we’ll discuss what a WorkBox setup could look like for you — developer, creator, team, researcher, analyst, or anything else.
-      </p>
-
-      <form
-        class="email-row"
-        action="mailto:your-email@example.com"
-        method="post"
-        enctype="text/plain"
-      >
-        <input
-          class="email-input"
-          type="email"
-          name="email"
-          placeholder="you@example.com"
-          required
-        />
-        <button class="btn-primary" type="submit">
-          Start the conversation
-        </button>
-      </form>
-    </section>
-
+    <!-- FOOTER -->
+    <footer>
+      <div>© <span id="year"></span> WorkBox Labs</div>
+      <div>Independent project exploring local AI workers &amp; optically-contained AI.</div>
+    </footer>
   </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
