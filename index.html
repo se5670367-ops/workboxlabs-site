@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>WorkBox AI — Local AI Worker on Your Hardware</title>
+  <title>WorkBox Labs — Local AI Workers & Optical Containment</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta
     name="description"
-    content="WorkBox AI is a workstation-based AI worker for coding, analysis, documentation, and real business operations tasks — all on hardware you own."
+    content="WorkBox Labs builds local AI workers and optically-contained AI systems, including WorkBox AI and the GlassBox Isolator, to keep powerful AI close to your data and under human control."
   />
 
   <style>
@@ -117,7 +117,7 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
       gap: 30px;
       align-items: center;
       margin-bottom: 60px;
@@ -138,7 +138,7 @@
     }
 
     .hero-title {
-      font-size: clamp(30px, 4vw, 38px);
+      font-size: clamp(32px, 4vw, 40px);
       line-height: 1.1;
       letter-spacing: -0.03em;
       margin: 0 0 14px;
@@ -151,7 +151,7 @@
     .hero-sub {
       font-size: 15px;
       color: var(--muted);
-      max-width: 620px;
+      max-width: 560px;
       margin-bottom: 18px;
     }
 
@@ -218,22 +218,63 @@
       background: linear-gradient(145deg, #020617, #020617, #0b1220);
       padding: 14px 16px 12px;
       font-size: 13px;
+    }
+
+    .hero-panel-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .hero-panel-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .hero-panel-grid { grid-template-columns: 1fr; }
+    }
+
+    .mini-card {
+      background: rgba(15,23,42,0.9);
+      border-radius: 10px;
+      padding: 8px 10px;
+      border: 1px solid rgba(148,163,184,0.35);
+      font-size: 12px;
       color: var(--muted);
     }
 
-    .hero-panel-inner h3 {
-      margin: 0 0 6px;
-      font-size: 14px;
+    .mini-card h4 {
+      margin: 0 0 4px;
+      font-size: 13px;
       color: var(--text);
     }
 
-    .hero-panel-list {
-      margin: 10px 0 0;
-      padding-left: 18px;
-      font-size: 13px;
+    .chip-row {
+      margin-top: 6px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
     }
 
-    /* SHARED SECTIONS */
+    .chip {
+      font-size: 11px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      background: rgba(15,23,42,0.9);
+      color: var(--muted);
+    }
+
+    .chip-accent {
+      border-color: rgba(34,197,94,0.8);
+      background: var(--accent-soft);
+      color: #bbf7d0;
+    }
+
+    /* SECTION SHARED */
 
     section {
       margin-bottom: 60px;
@@ -255,18 +296,20 @@
     .section-intro {
       font-size: 14px;
       color: var(--muted);
-      max-width: 700px;
+      max-width: 650px;
       margin-bottom: 18px;
     }
 
-    .two-col {
+    /* PROJECT GRID */
+
+    .project-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px;
     }
 
     @media (max-width: 840px) {
-      .two-col { grid-template-columns: 1fr; }
+      .project-grid { grid-template-columns: 1fr; }
     }
 
     .card {
@@ -277,73 +320,99 @@
       padding: 18px 16px 16px;
     }
 
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
     .card-title {
       font-size: 16px;
       font-weight: 600;
-      margin-bottom: 6px;
+    }
+
+    .card-tag {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.8);
+      color: var(--muted);
+      background: rgba(15,23,42,0.9);
     }
 
     .card p {
       font-size: 14px;
       color: var(--muted);
-      margin: 0 0 8px;
+      margin: 0 0 10px;
     }
 
-    .pill-row {
+    .card-links {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
       margin-top: 8px;
+      font-size: 13px;
+    }
+
+    .badge-link {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.7);
+      color: var(--muted);
+    }
+
+    .badge-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* WHY GRID */
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
+      gap: 18px;
+    }
+
+    @media (max-width: 840px) {
+      .why-grid { grid-template-columns: 1fr; }
+    }
+
+    .bullet-list {
+      font-size: 14px;
+      color: var(--muted);
+      padding-left: 18px;
+      margin: 0;
+    }
+
+    .status-card {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .status-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
       font-size: 12px;
     }
 
-    .pill {
+    .status-pill {
       padding: 3px 9px;
       border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.6);
+      border: 1px solid rgba(148,163,184,0.7);
       background: rgba(15,23,42,0.9);
       color: var(--muted);
     }
 
-    .pill-accent {
+    .status-pill.live {
       border-color: rgba(34,197,94,0.9);
-      background: var(--accent-soft);
       color: #bbf7d0;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    @media (max-width: 960px) {
-      .grid-3 { grid-template-columns: 1fr; }
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    @media (max-width: 840px) {
-      .grid-2 { grid-template-columns: 1fr; }
-    }
-
-    .small-label {
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 4px;
-    }
-
-    ul.tight {
-      margin: 0;
-      padding-left: 18px;
-      font-size: 14px;
-      color: var(--muted);
     }
 
     /* FOOTER */
@@ -374,274 +443,185 @@
       </div>
 
       <nav>
-        <a href="index.html">Home</a>
-        <a href="#capabilities">Capabilities</a>
-        <a href="#safety">Safety</a>
-        <a href="#workflow">Workflow</a>
+        <a href="#projects">Projects</a>
+        <a href="#why">Why this approach</a>
         <a href="#status">Status</a>
-        <a href="https://glassbox-ai.onrender.com" target="_blank" rel="noreferrer" class="nav-pill">
-          GlassBox Isolator demo
-        </a>
+        <a href="workbox.html" class="nav-pill">WorkBox AI</a>
       </nav>
     </header>
 
     <!-- HERO -->
     <section class="hero-grid">
       <div>
-        <div class="hero-label">WorkBox AI · Local AI Worker</div>
+        <div class="hero-label">Independent AI R&amp;D</div>
         <h1 class="hero-title">
-          A workstation-based <span>AI worker</span> for coding, analysis, documentation,
-          and real business operations tasks — all on hardware you own.
+           A workstation-based <span>AI worker</span> for coding, analysis, documentation,
+      and real business operations.
         </h1>
         <p class="hero-sub">
-          WorkBox AI behaves more like a focused software engineer and operations assistant than a chatbot.
-          It streams its desktop, takes on structured tasks, and works end-to-end on code, documents,
-          prototypes or planning workflows — with every input and file optically ingressed, sanitized,
-          and under your control.
+          WorkBox Labs explores how far local AI can go when it has the freedom to think —
+          but operates on hardware you own, and actions you can approve or reject in plain language.
         </p>
 
         <div class="hero-pills">
-          <div class="hero-pill">Runs on your workstation</div>
-          <div class="hero-pill">Desktop streaming</div>
-          <div class="hero-pill">Structured task queues</div>
-          <div class="hero-pill">Optical file ingress</div>
+          <div class="hero-pill">Local-only workloads</div>
+          <div class="hero-pill">No hidden network channels</div>
+          <div class="hero-pill">Human-approved actions</div>
+          <div class="hero-pill">Optical one-way output (GlassBox)</div>
         </div>
 
         <div class="btn-row">
-          <a href="#capabilities">
-            <button class="btn-primary">See what WorkBox can do</button>
+          <a href="workbox.html">
+            <button class="btn-primary">Meet WorkBox AI</button>
           </a>
-          <a href="index.html">
-            <button class="btn-ghost">Back to WorkBox Labs</button>
+          <a href="https://glassbox-ai.onrender.com" target="_blank" rel="noreferrer">
+            <button class="btn-ghost">Watch GlassBox demo</button>
           </a>
         </div>
       </div>
 
       <aside class="hero-panel" aria-hidden="true">
         <div class="hero-panel-inner">
-          <h3>What makes WorkBox different?</h3>
-          <p>
-            Most AI tools live in the cloud and ask you to upload everything. WorkBox AI flips that model:
-            it lives on your machine, looks at a local desktop session, and works inside an environment you own.
-          </p>
-          <ul class="hero-panel-list">
-            <li>Local models, local files, local compute.</li>
-            <li>Tasks expressed in plain language and JSON, not scripts you have to write.</li>
-            <li>Optional pairing with the GlassBox Isolator for higher-risk experiments.</li>
-          </ul>
+          <div class="hero-panel-title">What lives inside WorkBox Labs</div>
+          <div style="font-size:13px; color:var(--muted);">
+            Two hands-on experiments evolve in parallel: a practical AI worker you can put to work on your
+            own machine, and a research-grade Isolator that proves AI can be powerful, yet fully contained.
+          </div>
+
+          <div class="hero-panel-grid">
+            <div class="mini-card">
+              <h4>WorkBox AI</h4>
+              <div>
+                A workstation-based AI worker for coding, analysis, documentation, and real
+                business operations tasks — all on hardware you own.
+              </div>
+              <div class="chip-row">
+                <div class="chip chip-accent">AI Worker</div>
+                <div class="chip">Desktop streaming</div>
+                <div class="chip">Task queues</div>
+              </div>
+            </div>
+
+            <div class="mini-card">
+              <h4>GlassBox Isolator</h4>
+              <div>
+                An optically-contained AI rig based on the IDAS architecture. No inbound control path;
+                the only way out is through visible-light QR codes carrying Human Accountability Tickets.
+              </div>
+              <div class="chip-row">
+                <div class="chip chip-accent">Optical one-way</div>
+                <div class="chip">HAT console</div>
+                <div class="chip">Full audit trail</div>
+              </div>
+            </div>
+          </div>
         </div>
       </aside>
     </section>
 
-    <!-- OVERVIEW -->
-    <section id="overview">
-      <div class="section-label">Overview</div>
-      <h2 class="section-title">What is WorkBox AI for?</h2>
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-label">Projects</div>
+      <h2 class="section-title">What WorkBox Labs is building</h2>
       <p class="section-intro">
-        WorkBox AI is a local AI worker that helps with the kind of work people do at a desk:
-        writing and refactoring code, preparing documentation, exploring ideas, and supporting business
-        operations tasks like reports, small tools and structured analysis.
+        The long-term goal is simple: show that serious, high-value work can be done by AI
+        that lives on your own machines, with transparent limits and visible, reversible actions.
       </p>
 
-      <div class="two-col">
-        <div class="card">
-          <div class="card-title">Not just a chat window</div>
-          <p>
-            WorkBox is designed around <strong>tasks</strong>, not endless conversation. You point it at a
-            project or problem, frame the task, and let it work inside a controlled desktop session.
-          </p>
-          <p>
-            The goal isn’t to replace all work — it’s to offload the heavy lifting on the parts that are
-            repetitive, mechanical or exploratory, while keeping you firmly in charge of direction and approval.
-          </p>
-        </div>
+      <div class="project-grid">
+        <article class="card">
+          <div class="card-head">
+            <div>
+              <div class="card-title">WorkBox AI</div>
+              <div style="font-size:13px; color:var(--muted);">
+                A workstation-based AI worker for coding, analysis, documentation, and real
+                business operations tasks — all on hardware you own.
+              </div>
+            </div>
+            <div class="card-tag">Workstation</div>
+          </div>
 
-        <div class="card">
-          <div class="card-title">Lives where your work already is</div>
           <p>
-            Because WorkBox runs on a workstation, it is naturally close to your code, documents and tools.
-            It doesn’t need to send your files to an external API to be useful.
+            WorkBox AI behaves more like a focused software engineer and operations assistant
+            than a chatbot.
           </p>
           <p>
-            That makes it especially suited for internal projects, prototypes, experiments, and
-            environments where cloud AI is either not allowed or not trusted.
+            It streams its desktop, takes on structured tasks, and works end-to-end on code,
+            documents, prototypes or planning workflows — with every input and file optically
+            ingressed, sanitized, and under your control.
           </p>
-        </div>
+
+          <div class="card-links">
+            <a href="workbox.html" class="badge-link">Open WorkBox AI page →</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <div>
+              <div class="card-title">GlassBox Isolator</div>
+              <div style="font-size:13px; color:var(--muted);">
+                A research prototype that keeps AI behind glass with a single, visible output channel.
+              </div>
+            </div>
+            <div class="card-tag">Research</div>
+          </div>
+
+          <p>
+            The GlassBox Isolator runs a powerful local model in an Isolator with no network, no
+            keyboard and no mouse. The model can “think” freely, but it can only propose actions by
+            emitting a Human Accountability Ticket (HAT) as a QR code.
+          </p>
+          <p>
+            A separate console decodes each HAT, shows the full plan, and requires human approval
+            before anything runs on a separate machine. Every step is logged.
+          </p>
+
+          <div class="card-links">
+            <a href="https://glassbox-ai.onrender.com" target="_blank" rel="noreferrer" class="badge-link">
+              View public GlassBox demo →
+            </a>
+          </div>
+        </article>
       </div>
     </section>
 
-    <!-- CAPABILITIES -->
-    <section id="capabilities">
-      <div class="section-label">Capabilities</div>
-      <h2 class="section-title">What a WorkBox can help with</h2>
+    <!-- WHY THIS APPROACH -->
+    <section id="why">
+      <div class="section-label">Why this approach</div>
+      <h2 class="section-title">Freedom for the model. Boundaries for the system.</h2>
       <p class="section-intro">
-        The first versions of WorkBox AI focus on a handful of useful, concrete roles. Over time,
-        these can be combined into richer workflows, but each starts from a simple, understandable capability.
+        Today’s AI tends to live at two extremes: tightly sandboxed tools that can’t help much,
+        or highly-connected agents you can’t fully see. WorkBox Labs explores a middle path:
+        powerful local AI workers, wrapped in visible, human-first safety rails.
       </p>
 
-      <div class="grid-3">
+      <div class="why-grid">
         <div class="card">
-          <div class="small-label">Role</div>
-          <div class="card-title">Software assistant</div>
-          <p>
-            Take a repository, describe the goal, and let the WorkBox propose changes, refactors,
-            scaffolding or tests. You stay in control of commits and deployment.
-          </p>
-          <ul class="tight">
-            <li>Refactor or simplify existing code</li>
-            <li>Add tests and documentation</li>
-            <li>Sketch small tools or utilities</li>
+          <ul class="bullet-list">
+            <li><strong>Local-first, not cloud-first.</strong> Your data, code and files stay on machines you control.</li>
+            <li><strong>Visible actions.</strong> GlassBox uses HATs so every action is described in plain JSON and UI before it happens.</li>
+            <li><strong>Human approval baked in.</strong> The console shows previews, tiers and audit trails so you decide what runs.</li>
+            <li><strong>No hidden backchannels.</strong> The Isolator exposes only a one-way optical output — there is no inbound control path.</li>
+            <li><strong>Designed for real work.</strong> WorkBox AI focuses on end-to-end tasks, not just conversation snippets.</li>
           </ul>
         </div>
 
-        <div class="card">
-          <div class="small-label">Role</div>
-          <div class="card-title">Documentation &amp; analysis worker</div>
+        <div class="card status-card" id="status">
+          <div class="card-title" style="margin-bottom:6px;">Where things are up to</div>
           <p>
-            Turn rough notes, specs or transcripts into structured, readable material you can share
-            with a team or client.
-          </p>
-          <ul class="tight">
-            <li>Summaries and short briefs</li>
-            <li>How-to guides and checklists</li>
-            <li>Change logs and release notes</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <div class="small-label">Role</div>
-          <div class="card-title">Operations helper</div>
-          <p>
-            Support repetitive operations work like data clean-up, simple reports, schedule proposals
-            or small admin automations, always with you in the loop.
-          </p>
-          <ul class="tight">
-            <li>Structured spreadsheets &amp; CSV clean-up</li>
-            <li>Drafting simple internal tools</li>
-            <li>Generating options, not final decisions</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- SAFETY & INGESTION -->
-    <section id="safety">
-      <div class="section-label">Safety model</div>
-      <h2 class="section-title">File ingestion and safety are not an afterthought</h2>
-      <p class="section-intro">
-        Uploading files to a WorkBox is not the same as uploading them to a cloud AI. There is
-        no “just drag everything into the browser and hope for the best”. All inputs pass through
-        a controlled, optically-bounded pipeline.
-      </p>
-
-      <div class="two-col">
-        <div class="card">
-          <div class="card-title">Optical-only, curated ingress</div>
-          <p>
-            In the full WorkBox + Isolator setup, files and prompts are transferred via structured
-            optical bursts — the same philosophy as the GlassBox Isolator.
+            The current prototypes are already capable of generating HATs, displaying QR bursts,
+            decoding them on a main console and running approved actions with logging in place.
           </p>
           <p>
-            That means:
+            Next milestones include refining the WorkBox AI worker loop, polishing the GlassBox
+            demo site and shaping early, carefully-scoped pilot use cases.
           </p>
-          <ul class="tight">
-            <li>No direct network uploads into a remote model.</li>
-            <li>Content can be filtered, redacted or abstracted before the AI ever sees it.</li>
-            <li>You can decide which parts of a file are relevant — not the model.</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <div class="card-title">Sanitized context, not raw personal data</div>
-          <p>
-            The aim is for WorkBox to work on <strong>sanitized, structured context</strong>, not raw piles of
-            sensitive information. Over time, this can include:
-          </p>
-          <ul class="tight">
-            <li>Whitelists of allowed patterns and fields</li>
-            <li>Curator passes that strip identifiers and metadata</li>
-            <li>Clear separation between private archives and working prompts</li>
-          </ul>
-          <p>
-            The result: a worker that can meaningfully help, without needing to see everything.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- WORKFLOW -->
-    <section id="workflow">
-      <div class="section-label">Workflow</div>
-      <h2 class="section-title">How a WorkBox task runs</h2>
-      <p class="section-intro">
-        A WorkBox session is meant to feel like working alongside a very fast, very patient colleague
-        who happens to live inside a dedicated workstation.
-      </p>
-
-      <div class="grid-4" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;">
-        <div class="card">
-          <div class="small-label">Step 1</div>
-          <div class="card-title">Frame the task</div>
-          <p>
-            You describe the goal in plain language: what project, what constraints, what “good”
-            looks like, and any inputs you want the WorkBox to use.
-          </p>
-        </div>
-        <div class="card">
-          <div class="small-label">Step 2</div>
-          <div class="card-title">The worker explores</div>
-          <p>
-            The AI runs inside the WorkBox desktop, generating code, drafts, or analyses.
-            You can watch the screen or review outputs after the fact.
-          </p>
-        </div>
-        <div class="card">
-          <div class="small-label">Step 3</div>
-          <div class="card-title">You review the outputs</div>
-          <p>
-            You inspect changes, drafts or proposals. Nothing is forced into production:
-            it’s all material for you to accept, adapt or discard.
-          </p>
-        </div>
-        <div class="card">
-          <div class="small-label">Step 4</div>
-          <div class="card-title">Approve, refine, repeat</div>
-          <p>
-            Once you’re happy, you apply changes, copy results into your own tools, or
-            queue another task. The loop is designed to be incremental and reversible.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- STATUS / ROADMAP -->
-    <section id="status">
-      <div class="section-label">Status</div>
-      <h2 class="section-title">Where WorkBox AI is up to</h2>
-      <p class="section-intro">
-        WorkBox AI is an active, evolving project. The focus right now is on getting the core
-        worker loop solid and safe, before expanding into more ambitious automation.
-      </p>
-
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-title">Current prototype</div>
-          <ul class="tight">
-            <li>WorkBox Labs site and identity live</li>
-            <li>GlassBox Isolator prototype running with HAT + QR loop</li>
-            <li>Local model experiments for coding &amp; documentation tasks</li>
-            <li>Early designs for structured task queues and worker sessions</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <div class="card-title">Next steps</div>
-          <ul class="tight">
-            <li>Refine the WorkBox worker UI and task model</li>
-            <li>Deepen integration with the GlassBox Isolator for higher-risk tasks</li>
-            <li>Shape a small set of pilot-style use cases</li>
-            <li>Decide how to offer WorkBox units or hosted workers to others</li>
-          </ul>
+          <div class="status-pill-row">
+            <div class="status-pill live">GlassBox demo: live</div>
+            <div class="status-pill">WorkBox AI: prototype</div>
+            <div class="status-pill">Pilots: in planning</div>
+          </div>
         </div>
       </div>
     </section>
@@ -649,7 +629,7 @@
     <!-- FOOTER -->
     <footer>
       <div>© <span id="year"></span> WorkBox Labs</div>
-      <div>WorkBox AI is an experimental local AI worker — not a cloud service.</div>
+      <div>Independent project exploring local AI workers &amp; optically-contained AI.</div>
     </footer>
   </div>
 
